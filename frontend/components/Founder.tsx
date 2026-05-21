@@ -1,28 +1,29 @@
+'use client';
+import { useT } from '@/lib/i18n';
+
 export default function Founder() {
+  const { t } = useT();
   return (
-    <section className="py-24 border-t border-border">
+    <section className="py-28 border-t border-border">
       <div className="max-w-3xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-ink">关于创始人</h2>
-        <div className="mt-8 space-y-5 text-muted leading-relaxed">
-          <p>
-            我是 <span className="text-ink font-semibold">Larry Chen</span>，Thynoria 的创始人。
+        <div className="text-[11px] font-mono tracking-eyebrow text-accent mb-4">
+          {t.founder.eyebrow}
+        </div>
+        <h2 className="text-3xl md:text-[40px] font-semibold tracking-tightest text-ink">
+          {t.founder.heading}
+        </h2>
+        <div className="mt-10 space-y-5 text-[16px] text-muted leading-relaxed">
+          <p>{t.founder.lines[0]}</p>
+          <p>{t.founder.lines[1]}</p>
+          <p className="text-ink font-medium border-l-2 border-accent pl-5 py-1">
+            {t.founder.lines[2]}
           </p>
-          <p>
-            在创办 Thynoria 之前，我曾在生产环境亲历过多次 OpenAI、Anthropic 的区域性故障，
-            也亲手用胶带和铁丝把多通道容灾这件事缝合过无数次。
-          </p>
-          <p className="text-ink">
-            我相信：AI 基础设施的价值，不在于平时跑得多快，而在于出事时还活着。
-          </p>
-          <p>
-            Thynoria 是我把这些年踩过的坑沉淀下来，做给和我有同样烦恼的出海 AI 团队的工具。
-          </p>
-          <p>
-            如果你也在踩同样的坑，欢迎随时找我聊：
+          <p>{t.founder.lines[3]}</p>
+          <p className="pt-4">
+            {t.founder.contactLabel}
             <br />
-            📧{' '}
             <a
-              className="text-accent hover:underline"
+              className="text-accent hover:underline font-mono text-[15px] mt-2 inline-block"
               href="mailto:larrchen0125@gmail.com"
             >
               larrchen0125@gmail.com

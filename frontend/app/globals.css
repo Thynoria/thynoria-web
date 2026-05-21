@@ -2,15 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body { background: #0A0E1A; color: #E2E8F0; }
+html, body {
+  background: #0A0A0B;
+  color: #F4F4F5;
+  -webkit-font-smoothing: antialiased;
+}
 
+/* 精密网格背景 */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(124,58,237,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(124,58,237,0.08) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
-.glow {
-  background: radial-gradient(ellipse at top, rgba(124,58,237,0.25), transparent 60%);
+/* 顶部柔和辉光 — 只在首屏 */
+.hero-glow {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(0,112,243,0.18) 0%, transparent 55%),
+    radial-gradient(circle at 20% 30%, rgba(0,112,243,0.06) 0%, transparent 40%);
 }
+
+/* 顶部到内容的渐变蒙版（让网格自然消失）*/
+.fade-bottom {
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+/* 卡片描边发光 */
+.card-glow:hover {
+  border-color: rgba(0,112,243,0.4);
+  box-shadow: 0 0 0 1px rgba(0,112,243,0.15), 0 8px 32px -8px rgba(0,112,243,0.2);
+}
+
+/* 表格行分隔 */
+.dim-row {
+  border-color: #1F2125;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0A0A0B; }
+::-webkit-scrollbar-thumb { background: #2A2D31; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #3A3D41; }

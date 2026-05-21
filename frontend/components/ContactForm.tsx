@@ -1,7 +1,9 @@
 'use client';
 import { useState } from 'react';
+import { useT } from '@/lib/i18n';
 
 export default function ContactForm() {
+  const { t } = useT();
   const [status, setStatus] = useState<'idle' | 'loading' | 'ok' | 'err'>('idle');
   const [errMsg, setErrMsg] = useState('');
 
@@ -15,7 +17,7 @@ export default function ContactForm() {
       entity_location: fd.get('entity_location'),
       monthly_spend: fd.get('monthly_spend'),
       scenario: fd.get('scenario'),
-      website: fd.get('website'), // 蜜罐字段
+      website: fd.get('website'),
       source: 'landing',
     };
     try {
@@ -26,37 +28,37 @@ export default function ContactForm() {
       });
       if (!res.ok) {
         const j = await res.json().catch(() => ({}));
-        throw new Error(j.error || '提交失败');
+        throw new Error(j.error || 'submit failed');
       }
       setStatus('ok');
       (e.target as HTMLFormElement).reset();
     } catch (err: any) {
       setStatus('err');
-      setErrMsg(err.message || '网络错误');
+      setErrMsg(err.message || 'network error');
     }
   }
 
   return (
-    <section id="contact" className="py-24 border-t border-border">
-      <div className="max-w-2xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-ink text-center">
-          申请加入种子客户
-        </h2>
-        <p className="mt-3 text-muted text-center">
-          我们会在 24 小时内回复，并约一次 30 分钟的视频沟通。
-        </p>
+    <section id="contact" className="py-28 border-t border-border">
+      <div className="max-w-xl mx-auto px-6">
+        <div className="text-center mb-12">
+          <div className="text-[11px] font-mono tracking-eyebrow text-accent mb-4">
+            {t.contact.eyebrow}
+          </div>
+          <h2 className="text-3xl md:text-[40px] font-semibold tracking-tightest text-ink">
+            {t.contact.heading}
+          </h2>
+          <p className="mt-4 text-muted">{t.contact.sub}</p>
+        </div>
 
         {status === 'ok' ? (
-          <div className="mt-10 rounded-xl border border-emerald-500/40 bg-emerald-500/5 p-6 text-center text-ink">
-            ✓ 已收到，我们会尽快通过邮件与你联系。
-            <br />
-            <span className="text-sm text-muted mt-2 inline-block">
-              如有紧急事项可直接发邮件至 larrchen0125@gmail.com
-            </span>
+          <div className="rounded-xl border border-accent/40 bg-accent-soft p-8 text-center">
+            <div className="font-mono text-[11px] text-accent tracking-eyebrow mb-3">SUCCESS</div>
+            <div className="text-ink text-[15px]">{t.contact.okMessage}</div>
+            <div className="text-[13px] text-muted mt-3">{t.contact.okSub}</div>
           </div>
         ) : (
-          <form onSubmit={onSubmit} className="mt-10 space-y-5">
-            {/* 蜜罐字段 */}
+          <form onSubmit={onSubmit} className="space-y-5">
             <input
               type="text"
               name="website"
@@ -66,74 +68,73 @@ export default function ContactForm() {
               aria-hidden="true"
             />
 
-            <Field label="邮箱" required>
+            <Field label={t.contact.labels.email} required>
               <input
                 name="email"
                 type="email"
                 required
-                placeholder="you@company.com"
-                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink focus:border-brand outline-none"
+                placeholder={t.contact.placeholders.email}
+                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] focus:border-accent focus:bg-elevated outline-none transition"
               />
             </Field>
 
-            <Field label="公司主体注册地" required>
+            <Field label={t.contact.labels.entity} required>
               <select
                 name="entity_location"
                 required
                 defaultValue=""
-                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink focus:border-brand outline-none"
+                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] focus:border-accent outline-none transition"
               >
-                <option value="" disabled>请选择</option>
-                <option value="HK">香港</option>
-                <option value="SG">新加坡</option>
-                <option value="US">美国</option>
-                <option value="CN">中国大陆</option>
-                <option value="OTHER">其他</option>
+                <option value="" disabled>
+                  {t.contact.placeholders.select}
+                </option>
+                {t.contact.entityOptions.map(([v, l]) => (
+                  <option key={v} value={v}>{l}</option>
+                ))}
               </select>
             </Field>
 
-            <Field label="月度 AI API 花费量级" required>
+            <Field label={t.contact.labels.spend} required>
               <select
                 name="monthly_spend"
                 required
                 defaultValue=""
-                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink focus:border-brand outline-none"
+                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] focus:border-accent outline-none transition"
               >
-                <option value="" disabled>请选择</option>
-                <option value="<1k">&lt; $1,000</option>
-                <option value="1k-10k">$1,000 – $10,000</option>
-                <option value="10k-100k">$10,000 – $100,000</option>
-                <option value=">100k">&gt; $100,000</option>
+                <option value="" disabled>
+                  {t.contact.placeholders.select}
+                </option>
+                {t.contact.spendOptions.map(([v, l]) => (
+                  <option key={v} value={v}>{l}</option>
+                ))}
               </select>
             </Field>
 
-            <Field label="一句话描述你的业务场景与最痛的点（选填）">
+            <Field label={t.contact.labels.scenario}>
               <textarea
                 name="scenario"
                 rows={4}
                 maxLength={1000}
-                placeholder="例如：跨境电商 AI 客服，每次 OpenAI 抽风都丢单……"
-                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink focus:border-brand outline-none"
+                placeholder={t.contact.placeholders.scenario}
+                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] focus:border-accent focus:bg-elevated outline-none transition resize-none"
               />
             </Field>
 
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="w-full px-6 py-3 rounded-md bg-brand text-white hover:opacity-90 disabled:opacity-50"
+              className="w-full px-5 py-3 rounded-md bg-accent text-white text-[14px] font-medium hover:bg-accent-hover disabled:opacity-50 transition shadow-[0_4px_24px_-4px_rgba(0,112,243,0.4)]"
             >
-              {status === 'loading' ? '提交中…' : '提交申请 →'}
+              {status === 'loading' ? t.contact.submitting : `${t.contact.submit} →`}
             </button>
 
             {status === 'err' && (
-              <div className="text-rose-400 text-sm text-center">
-                提交失败：{errMsg}。也可直接发邮件至 larrchen0125@gmail.com
+              <div className="text-[13px] text-rose-400 text-center">
+                {t.contact.errPrefix}{errMsg}{t.contact.errSuffix}
               </div>
             )}
 
-            <p className="text-xs text-muted text-center">
-              我们承诺不向任何第三方分享你的信息。
-            </p>
+            <p className="text-[12px] text-muted text-center">{t.contact.privacy}</p>
           </form>
         )}
       </div>
@@ -152,8 +153,8 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="block text-sm text-muted mb-2">
-        {label} {required && <span className="text-brand">*</span>}
+      <span className="block text-[12px] font-mono tracking-wider text-muted mb-2 uppercase">
+        {label} {required && <span className="text-accent">*</span>}
       </span>
       {children}
     </label>

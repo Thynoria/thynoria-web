@@ -1,38 +1,38 @@
+'use client';
+import { useT } from '@/lib/i18n';
+import { SectionHead } from './PainPoints';
+
 export default function FitCheck() {
-  const fit = [
-    '公司主体在 香港 / 新加坡 / 美国 的出海 AI 团队',
-    '业务跑在生产环境，稳定性比省 5% 成本更重要',
-    '需要合规发票、需要中文支持的港新美主体公司',
-    '一线在踩 API 故障与多供应商管理的坑',
-  ];
-  const notFit = [
-    '公司主体与业务都在中国大陆境内',
-    '主要诉求是"比官方便宜 30%"',
-    '个人开发者 / Hobby 项目',
-  ];
+  const { t } = useT();
   return (
-    <section className="py-24 border-t border-border">
+    <section className="py-28 border-t border-border">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-ink">
-          我们不适合所有人
-        </h2>
-        <div className="mt-14 grid md:grid-cols-2 gap-6">
-          <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-6">
-            <div className="text-emerald-400 font-semibold mb-4">✓ 适合</div>
-            <ul className="space-y-3">
-              {fit.map((t) => (
-                <li key={t} className="flex gap-3 text-ink">
-                  <span className="text-emerald-400">●</span> {t}
+        <SectionHead eyebrow={t.fit.eyebrow} heading={t.fit.heading} sub={t.fit.sub} />
+
+        <div className="mt-16 grid md:grid-cols-2 gap-4">
+          <div className="rounded-xl border border-border bg-panel p-8">
+            <div className="font-mono text-[11px] text-accent tracking-eyebrow mb-5">
+              ✓ {t.fit.fitLabel.toUpperCase()}
+            </div>
+            <ul className="space-y-3.5">
+              {t.fit.fit.map((line) => (
+                <li key={line} className="flex gap-3 text-ink text-[14px] leading-relaxed">
+                  <span className="text-accent mt-1.5 shrink-0 w-1 h-1 rounded-full bg-accent" />
+                  {line}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-xl border border-rose-500/30 bg-rose-500/5 p-6">
-            <div className="text-rose-400 font-semibold mb-4">✗ 不适合</div>
-            <ul className="space-y-3">
-              {notFit.map((t) => (
-                <li key={t} className="flex gap-3 text-muted">
-                  <span className="text-rose-400">●</span> {t}
+
+          <div className="rounded-xl border border-border bg-panel p-8">
+            <div className="font-mono text-[11px] text-muted-strong tracking-eyebrow mb-5">
+              ✗ {t.fit.notFitLabel.toUpperCase()}
+            </div>
+            <ul className="space-y-3.5">
+              {t.fit.notFit.map((line) => (
+                <li key={line} className="flex gap-3 text-muted text-[14px] leading-relaxed">
+                  <span className="mt-1.5 shrink-0 w-1 h-1 rounded-full bg-muted" />
+                  {line}
                 </li>
               ))}
             </ul>

@@ -1,31 +1,35 @@
+'use client';
+import { useT } from '@/lib/i18n';
+
 export default function Footer() {
+  const { t } = useT();
   return (
-    <footer className="border-t border-border py-12 text-sm text-muted">
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+    <footer className="border-t border-border py-16 text-[13px] text-muted bg-panel/30">
+      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-10">
         <div>
-          <div className="flex items-center gap-2.5 mb-3">
-            <img src="/logo.svg" alt="Thynoria" className="h-7 w-7" />
-            <span className="text-ink font-bold tracking-wider">THYNORIA</span>
-          </div>
-          <div>Reliability Infrastructure</div>
-          <div>for Enterprise AI</div>
+          <div className="text-ink font-semibold tracking-tight text-[16px] mb-3">Thynoria</div>
+          <div className="leading-relaxed">{t.footer.slogan}</div>
         </div>
         <div>
-          <div className="text-ink font-medium mb-2">联系我们</div>
-          <a className="hover:text-accent transition" href="mailto:larrchen0125@gmail.com">
+          <div className="text-[11px] font-mono tracking-eyebrow text-muted-strong mb-3">
+            {t.footer.contactTitle.toUpperCase()}
+          </div>
+          <a className="text-ink hover:text-accent transition font-mono" href="mailto:larrchen0125@gmail.com">
             larrchen0125@gmail.com
           </a>
         </div>
         <div>
-          <div className="text-ink font-medium mb-2">公司信息</div>
-          <div>Thynoria Limited</div>
-          <div>Registered in Hong Kong</div>
+          <div className="text-[11px] font-mono tracking-eyebrow text-muted-strong mb-3">
+            {t.footer.companyTitle.toUpperCase()}
+          </div>
+          <div className="text-ink">{t.footer.companyL1}</div>
+          <div>{t.footer.companyL2}</div>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto px-6 mt-10 pt-6 border-t border-border text-xs leading-relaxed">
-        © {new Date().getFullYear()} Thynoria Limited. All rights reserved.
+      <div className="max-w-6xl mx-auto px-6 mt-12 pt-8 border-t border-border text-[12px] leading-relaxed text-muted">
+        © {new Date().getFullYear()} Thynoria Limited. {t.footer.rights}
         <br />
-        Thynoria 是注册于香港的服务提供商，面向全球开发者提供 AI API 聚合服务，不主动向中国大陆境内提供服务。所有用户对自身的合规使用承担全部责任。
+        {t.footer.legal}
       </div>
     </footer>
   );

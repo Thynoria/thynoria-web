@@ -1,110 +1,100 @@
+'use client';
+import { useT } from '@/lib/i18n';
+
 export default function Hero() {
+  const { t } = useT();
   return (
     <section className="relative overflow-hidden">
-      {/* 背景层：网格 + 多层光晕 */}
-      <div className="absolute inset-0 bg-grid opacity-30" />
-      <div className="absolute inset-0 glow" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-brand/20 blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/3 w-[400px] h-[400px] rounded-full bg-accent/10 blur-[100px] pointer-events-none" />
+      <div className="absolute inset-0 hero-glow pointer-events-none" />
+      <div className="absolute inset-0 bg-grid fade-bottom pointer-events-none" />
 
-      <div className="relative max-w-6xl mx-auto px-6 pt-20 pb-28 text-center">
-        {/* 巨型 Logo */}
+      <div className="relative max-w-5xl mx-auto px-6 pt-28 pb-24 md:pt-36 md:pb-32">
+        {/* Eyebrow */}
         <div className="flex justify-center mb-8">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-brand to-accent blur-2xl opacity-50 rounded-full" />
-            <img
-              src="/logo.svg"
-              alt="Thynoria"
-              className="relative h-24 w-24 md:h-32 md:w-32 drop-shadow-[0_0_30px_rgba(124,58,237,0.5)]"
-            />
+          <div className="text-[11px] font-mono tracking-eyebrow text-accent flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,112,243,0.8)]" />
+            {t.hero.eyebrow}
           </div>
         </div>
 
-        {/* 品牌名 */}
-        <h1 className="text-5xl md:text-7xl font-black tracking-[0.15em] text-ink mb-3">
-          THYNORIA
+        {/* H1 */}
+        <h1 className="text-center text-[44px] md:text-[68px] leading-[1.05] font-semibold tracking-tightest text-ink">
+          {t.hero.h1Line1}
+          <br />
+          <span className="text-muted-strong">{t.hero.h1Line2}</span>
         </h1>
-        <div className="text-sm md:text-base tracking-[0.4em] text-muted mb-10">
-          星 · 诺 · 智 · 能
-        </div>
 
-        {/* 主 Slogan */}
-        <div className="inline-block px-4 py-1.5 mb-6 text-xs rounded-full border border-brand/40 bg-brand/5 text-brand backdrop-blur">
-          🇭🇰 香港主体 · 面向亚太华人 AI 出海团队
-        </div>
-
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-          <span className="text-ink">Reliability Infrastructure</span>
-          <br />
-          <span className="bg-gradient-to-r from-brand via-pink-400 to-accent bg-clip-text text-transparent">
-            for Enterprise AI
-          </span>
-        </h2>
-
-        <p className="mt-7 text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
-          一套凭据，一个入口，多通道容灾。
-          <br />
-          为出海 AI 团队打造的<span className="text-ink font-medium">企业级 AI Runtime Infrastructure</span>。
+        {/* Sub */}
+        <p className="mt-8 text-center text-[17px] md:text-lg text-muted leading-relaxed max-w-2xl mx-auto">
+          {t.hero.sub}
         </p>
 
-        <div className="mt-5 inline-flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted">
-          <span>🇭🇰 香港主体</span>
-          <span className="text-border">·</span>
-          <span>📜 合规透明</span>
-          <span className="text-border">·</span>
-          <span>💬 中英双语</span>
-          <span className="text-border">·</span>
-          <span>⚡ 明确 SLA</span>
+        {/* Trust tags */}
+        <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-[13px] text-muted">
+          <TrustTag>{t.hero.tag1}</TrustTag>
+          <TrustTag>{t.hero.tag2}</TrustTag>
+          <TrustTag>{t.hero.tag3}</TrustTag>
+          <TrustTag>{t.hero.tag4}</TrustTag>
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+        {/* CTAs */}
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
           <a
             href="#contact"
-            className="px-7 py-3.5 rounded-md bg-gradient-to-r from-brand to-accent text-white font-medium hover:opacity-90 transition shadow-xl shadow-brand/30"
+            className="px-5 py-2.5 rounded-md bg-accent text-white text-[14px] font-medium hover:bg-accent-hover transition shadow-[0_4px_24px_-4px_rgba(0,112,243,0.4)]"
           >
-            申请内测 →
+            {t.hero.cta1} →
           </a>
           <a
             href="mailto:larrchen0125@gmail.com"
-            className="px-7 py-3.5 rounded-md border border-border bg-panel/40 text-ink hover:border-brand transition backdrop-blur"
+            className="px-5 py-2.5 rounded-md border border-border text-ink text-[14px] hover:border-border-strong hover:bg-panel transition"
           >
-            联系创始人
+            {t.hero.cta2}
           </a>
         </div>
 
-        {/* 代码示例 */}
-        <div className="mt-20 max-w-3xl mx-auto rounded-xl border border-border bg-panel/60 backdrop-blur shadow-2xl shadow-brand/10 overflow-hidden text-left">
-          <div className="flex items-center gap-2 px-4 py-2.5 border-b border-border bg-panel/80">
-            <span className="w-3 h-3 rounded-full bg-rose-500/60" />
-            <span className="w-3 h-3 rounded-full bg-amber-500/60" />
-            <span className="w-3 h-3 rounded-full bg-emerald-500/60" />
-            <span className="ml-3 text-xs text-muted font-mono">业务代码零改造</span>
+        {/* Code window */}
+        <div className="mt-20 mx-auto max-w-3xl rounded-lg border border-border bg-panel overflow-hidden shadow-2xl shadow-black/40">
+          <div className="px-4 py-2.5 border-b border-border bg-elevated flex items-center justify-between">
+            <div className="text-[11px] font-mono tracking-wider text-muted">{t.hero.codeLabel}</div>
+            <div className="flex gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-border-strong" />
+              <span className="w-2 h-2 rounded-full bg-border-strong" />
+              <span className="w-2 h-2 rounded-full bg-border-strong" />
+            </div>
           </div>
-          <pre className="p-6 font-mono text-sm overflow-x-auto leading-relaxed">
-            <span className="text-pink-400">from</span>
-            <span className="text-ink"> openai </span>
-            <span className="text-pink-400">import</span>
-            <span className="text-ink"> OpenAI</span>
+          <pre className="p-6 font-mono text-[13px] leading-relaxed overflow-x-auto">
+            <span className="text-[#FF8B7B]">from</span>{' '}
+            <span className="text-ink">openai</span>{' '}
+            <span className="text-[#FF8B7B]">import</span>{' '}
+            <span className="text-ink">OpenAI</span>
             {'\n\n'}
             <span className="text-ink">client = OpenAI(</span>
-            {'\n  '}
-            <span className="text-accent">base_url</span>
+            {'\n    '}
+            <span className="text-[#79B8FF]">base_url</span>
             <span className="text-ink">=</span>
-            <span className="text-emerald-400">"https://api.thynoria.com/v1"</span>
+            <span className="text-[#9ECBFF]">&quot;https://api.thynoria.com/v1&quot;</span>
             <span className="text-ink">,</span>
-            {'\n  '}
-            <span className="text-accent">api_key</span>
+            {'\n    '}
+            <span className="text-[#79B8FF]">api_key</span>
             <span className="text-ink">=</span>
-            <span className="text-emerald-400">"thy-xxxxxxxx"</span>
+            <span className="text-[#9ECBFF]">&quot;thy-xxxxxxxx&quot;</span>
             {'\n'}
             <span className="text-ink">)</span>
-            {'\n'}
-            <span className="text-muted"># 背后：OpenAI · Azure · Anthropic · Gemini · DeepSeek</span>
-            {'\n'}
-            <span className="text-muted"># 主通道异常 → 毫秒级自动切换，流式响应不中断</span>
+            {'\n\n'}
+            <span className="text-muted">{t.hero.codeComment}</span>
           </pre>
         </div>
       </div>
     </section>
+  );
+}
+
+function TrustTag({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-flex items-center gap-1.5">
+      <span className="w-1 h-1 rounded-full bg-accent/70" />
+      {children}
+    </span>
   );
 }

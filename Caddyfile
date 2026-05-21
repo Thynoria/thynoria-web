@@ -1,8 +1,8 @@
 thynoria.com, www.thynoria.com {
     encode zstd gzip
 
-    # 后端 API
-    handle_path /api/* {
+    # 后端 API（保留 /api 前缀转发）
+    handle /api/* {
         reverse_proxy backend:3000
     }
 

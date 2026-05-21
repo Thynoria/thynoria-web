@@ -5,29 +5,33 @@
 html {
   scroll-behavior: smooth;
   /* Sticky nav 高度补偿，让锚点跳转不被遮挡 */
-  scroll-padding-top: 80px;
+  scroll-padding-top: 96px;
 }
 
 html, body {
-  background: #0A0A0B;
-  color: #F4F4F5;
+  background: #08090A;
+  color: #F5F5F7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* 中文优先字体栈 + 让数字使用比例字宽 */
   font-feature-settings: 'cv11', 'ss01', 'ss03';
   text-rendering: optimizeLegibility;
 }
 
+/* 西文与中文优化字距 */
+body {
+  font-variant-ligatures: contextual;
+}
+
 /* 选区色 */
 ::selection {
-  background: rgba(0, 112, 243, 0.35);
-  color: #F4F4F5;
+  background: rgba(59, 130, 246, 0.35);
+  color: #F5F5F7;
 }
 
 /* 中文段落更舒展的行高 */
 :lang(zh-CN) p,
 :lang(zh-CN) li {
-  line-height: 1.75;
+  line-height: 1.8;
 }
 
 /* 表格里数字等宽对齐 */
@@ -38,16 +42,17 @@ table {
 /* 精细网格 */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-  background-size: 64px 64px;
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 72px 72px;
 }
 
 /* 顶部柔光 */
 .hero-glow {
   background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0, 112, 243, 0.14) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 30% at 30% 20%, rgba(0, 112, 243, 0.04) 0%, transparent 50%);
+    radial-gradient(ellipse 90% 55% at 50% -10%, rgba(59, 130, 246, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 25% 15%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 75% 25%, rgba(99, 102, 241, 0.04) 0%, transparent 50%);
 }
 
 .fade-bottom {
@@ -57,24 +62,49 @@ table {
 
 /* 卡片悬停 */
 .card-glow {
-  transition: border-color 200ms ease, background-color 200ms ease,
-    box-shadow 200ms ease, transform 200ms ease;
+  transition: border-color 240ms ease, background-color 240ms ease,
+    box-shadow 240ms ease, transform 240ms ease;
 }
 .card-glow:hover {
-  border-color: rgba(0, 112, 243, 0.3);
-  background-color: #131417;
-  box-shadow: 0 1px 0 0 rgba(0, 112, 243, 0.08), 0 12px 40px -16px rgba(0, 112, 243, 0.25);
+  border-color: rgba(59, 130, 246, 0.35);
+  background-color: #13151A;
+  box-shadow: 0 1px 0 0 rgba(59, 130, 246, 0.10) inset,
+              0 20px 50px -20px rgba(59, 130, 246, 0.25);
 }
 
 /* 表单聚焦细环 */
 .focus-ring:focus {
   outline: none;
-  border-color: rgba(0, 112, 243, 0.6);
-  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.15);
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
 }
 
 /* 滚动条 */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: #0A0A0B; }
-::-webkit-scrollbar-thumb { background: #2A2D31; border-radius: 5px; }
-::-webkit-scrollbar-thumb:hover { background: #3A3D41; }
+::-webkit-scrollbar-track { background: #08090A; }
+::-webkit-scrollbar-thumb { background: #2A2E36; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #3A3E46; }
+
+/* 渐变描边（用于 featured tier 卡片） */
+.gradient-border {
+  position: relative;
+  background-clip: padding-box;
+  border: 1px solid transparent;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(180deg, rgba(59,130,246,0.6), rgba(59,130,246,0.05));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* 微弱顶部高光线（用于 nav 与 hero 顶部） */
+.top-hairline {
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), transparent 30%);
+}

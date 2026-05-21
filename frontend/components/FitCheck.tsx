@@ -5,26 +5,26 @@ import SectionHead from './SectionHead';
 export default function FitCheck() {
   const { t } = useT();
   return (
-    <section className="py-24 md:py-32 border-t border-border">
-      <div className="max-w-wide mx-auto px-6">
+    <section id="fit" className="py-28 md:py-36 border-t border-border">
+      <div className="max-w-wide mx-auto px-6 lg:px-8">
         <SectionHead eyebrow={t.fit.eyebrow} heading={t.fit.heading} sub={t.fit.sub} />
 
-        <div className="mt-16 md:mt-20 grid md:grid-cols-2 gap-5">
+        <div className="mt-20 grid md:grid-cols-2 gap-6">
           {/* Fit */}
-          <div className="rounded-xl border border-border bg-panel p-7 md:p-9">
-            <div className="flex items-center gap-2.5 mb-7">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,112,243,0.9)]" />
-              <div className="font-mono text-[11px] text-accent tracking-eyebrow">
-                {t.fit.fitLabel.toUpperCase()}
+          <div className="rounded-2xl border border-border bg-panel p-8 md:p-10">
+            <div className="flex items-center gap-3 mb-8">
+              <span className="w-2 h-2 rounded-full bg-accent shadow-[0_0_10px_rgba(59,130,246,0.9)]" />
+              <div className="font-mono text-[12px] text-accent tracking-eyebrow uppercase">
+                {t.fit.fitLabel}
               </div>
             </div>
-            <ul className="space-y-4">
+            <ul className="space-y-5">
               {t.fit.fit.map((line) => (
                 <li
                   key={line}
-                  className="flex gap-3 text-ink-soft text-[14.5px] leading-relaxed"
+                  className="flex gap-3.5 text-ink-soft text-[16px] leading-[1.7]"
                 >
-                  <span className="text-accent shrink-0 leading-relaxed">→</span>
+                  <span className="text-accent shrink-0 mt-0.5 font-mono">→</span>
                   <span>{line}</span>
                 </li>
               ))}
@@ -32,20 +32,20 @@ export default function FitCheck() {
           </div>
 
           {/* Not fit */}
-          <div className="rounded-xl border border-border bg-panel p-7 md:p-9">
-            <div className="flex items-center gap-2.5 mb-7">
-              <span className="w-1.5 h-1.5 rounded-full bg-muted" />
-              <div className="font-mono text-[11px] text-muted tracking-eyebrow">
-                {t.fit.notFitLabel.toUpperCase()}
+          <div className="rounded-2xl border border-border bg-panel p-8 md:p-10">
+            <div className="flex items-center gap-3 mb-8">
+              <span className="w-2 h-2 rounded-full bg-muted" />
+              <div className="font-mono text-[12px] text-muted-strong tracking-eyebrow uppercase">
+                {t.fit.notFitLabel}
               </div>
             </div>
-            <ul className="space-y-4">
+            <ul className="space-y-5">
               {t.fit.notFit.map((line) => (
                 <li
                   key={line}
-                  className="flex gap-3 text-muted text-[14.5px] leading-relaxed"
+                  className="flex gap-3.5 text-muted-strong text-[16px] leading-[1.7]"
                 >
-                  <span className="shrink-0 leading-relaxed">×</span>
+                  <span className="shrink-0 mt-0.5">×</span>
                   <span>{line}</span>
                 </li>
               ))}

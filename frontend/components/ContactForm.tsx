@@ -39,25 +39,27 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="contact" className="py-24 md:py-32 border-t border-border">
-      <div className="max-w-prose mx-auto px-6">
-        <div className="text-center mb-12 md:mb-14">
-          <div className="text-[11px] font-mono tracking-eyebrow text-accent mb-5">
+    <section id="contact" className="py-28 md:py-36 border-t border-border">
+      <div className="max-w-prose mx-auto px-6 lg:px-8">
+        <div className="text-center mb-14 md:mb-16">
+          <div className="text-[12px] font-mono tracking-eyebrow text-accent mb-5 uppercase">
             {t.contact.eyebrow}
           </div>
-          <h2 className="text-[28px] md:text-[36px] leading-[1.2] font-semibold tracking-tightest text-ink">
+          <h2 className="text-[32px] md:text-[40px] leading-[1.18] font-semibold tracking-tightest text-ink">
             {t.contact.heading}
           </h2>
-          <p className="mt-5 text-[15px] md:text-[16px] text-muted leading-relaxed">
+          <p className="mt-6 text-[16px] md:text-[17px] text-muted-strong leading-[1.65]">
             {t.contact.sub}
           </p>
         </div>
 
         {status === 'ok' ? (
-          <div className="rounded-xl border border-accent/40 bg-accent-soft p-8 text-center">
-            <div className="font-mono text-[11px] text-accent tracking-eyebrow mb-3">SUCCESS</div>
-            <div className="text-ink text-[15px]">{t.contact.okMessage}</div>
-            <div className="text-[13px] text-muted mt-3">{t.contact.okSub}</div>
+          <div className="rounded-2xl border border-accent/40 bg-accent-soft p-10 text-center">
+            <div className="font-mono text-[12px] text-accent tracking-eyebrow mb-3 uppercase">
+              Success
+            </div>
+            <div className="text-ink text-[16px] md:text-[17px]">{t.contact.okMessage}</div>
+            <div className="text-[14px] text-muted-strong mt-3">{t.contact.okSub}</div>
           </div>
         ) : (
           <form onSubmit={onSubmit} className="space-y-6">
@@ -76,7 +78,7 @@ export default function ContactForm() {
                 type="email"
                 required
                 placeholder={t.contact.placeholders.email}
-                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] focus-ring transition"
+                className="w-full bg-panel border border-border-strong rounded-md px-4 py-3.5 text-ink text-[15px] focus-ring transition placeholder:text-muted"
               />
             </Field>
 
@@ -86,7 +88,7 @@ export default function ContactForm() {
                   name="entity_location"
                   required
                   defaultValue=""
-                  className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] focus-ring transition"
+                  className="w-full bg-panel border border-border-strong rounded-md px-4 py-3.5 text-ink text-[15px] focus-ring transition"
                 >
                   <option value="" disabled>
                     {t.contact.placeholders.select}
@@ -102,7 +104,7 @@ export default function ContactForm() {
                   name="monthly_spend"
                   required
                   defaultValue=""
-                  className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] focus-ring transition"
+                  className="w-full bg-panel border border-border-strong rounded-md px-4 py-3.5 text-ink text-[15px] focus-ring transition"
                 >
                   <option value="" disabled>
                     {t.contact.placeholders.select}
@@ -120,25 +122,27 @@ export default function ContactForm() {
                 rows={4}
                 maxLength={1000}
                 placeholder={t.contact.placeholders.scenario}
-                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] leading-relaxed focus-ring transition resize-none"
+                className="w-full bg-panel border border-border-strong rounded-md px-4 py-3.5 text-ink text-[15px] leading-[1.65] focus-ring transition resize-none placeholder:text-muted"
               />
             </Field>
 
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="w-full px-5 py-3 rounded-md bg-accent text-white text-[14px] font-medium hover:bg-accent-hover disabled:opacity-50 transition shadow-[0_4px_24px_-4px_rgba(0,112,243,0.45)]"
+              className="w-full px-5 py-3.5 rounded-md bg-accent text-white text-[15px] font-medium hover:bg-accent-hover disabled:opacity-50 transition shadow-[0_6px_24px_-8px_rgba(59,130,246,0.6)]"
             >
               {status === 'loading' ? t.contact.submitting : `${t.contact.submit} →`}
             </button>
 
             {status === 'err' && (
-              <div className="text-[13px] text-rose-400 text-center">
+              <div className="text-[14px] text-rose-400 text-center">
                 {t.contact.errPrefix}{errMsg}{t.contact.errSuffix}
               </div>
             )}
 
-            <p className="text-[12px] text-muted text-center pt-2">{t.contact.privacy}</p>
+            <p className="text-[13px] text-muted text-center pt-2 leading-relaxed">
+              {t.contact.privacy}
+            </p>
           </form>
         )}
       </div>
@@ -157,7 +161,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="block text-[11px] font-mono tracking-eyebrow text-muted mb-2.5 uppercase">
+      <span className="block text-[12px] font-mono tracking-eyebrow text-muted-strong mb-3 uppercase">
         {label} {required && <span className="text-accent">*</span>}
       </span>
       {children}

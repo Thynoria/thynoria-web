@@ -5,6 +5,7 @@ import Architecture from '@/components/Architecture';
 import Stack from '@/components/Stack';
 import Comparison from '@/components/Comparison';
 import FitCheck from '@/components/FitCheck';
+import Tiers from '@/components/Tiers';
 import SeedProgram from '@/components/SeedProgram';
 import Founder from '@/components/Founder';
 import ContactForm from '@/components/ContactForm';
@@ -20,6 +21,7 @@ export default function Page() {
       <Stack />
       <Comparison />
       <FitCheck />
+      <Tiers />
       <SeedProgram />
       <Founder />
       <ContactForm />

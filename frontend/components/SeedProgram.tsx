@@ -4,47 +4,73 @@ import { useT } from '@/lib/i18n';
 export default function SeedProgram() {
   const { t } = useT();
   return (
-    <section id="pricing" className="py-24 md:py-32 border-t border-border bg-panel/40">
-      <div className="max-w-3xl mx-auto px-6 text-center">
-        <div className="text-[11px] font-mono tracking-eyebrow text-accent mb-5">
-          {t.seed.eyebrow}
-        </div>
-        <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 text-[11.5px] font-mono rounded-full border border-accent/40 bg-accent-soft text-accent">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-          {t.seed.tag}
-        </div>
-        <h2 className="text-[28px] md:text-[40px] leading-[1.15] font-semibold tracking-tightest text-ink">
-          {t.seed.heading}
-        </h2>
-        <p className="mt-5 text-[16px] text-muted leading-relaxed">{t.seed.sub}</p>
+    <section
+      id="early-access"
+      className="py-24 md:py-32 border-t border-border"
+    >
+      <div className="max-w-content mx-auto px-6 lg:px-8">
+        <div className="relative rounded-2xl border border-accent/30 bg-gradient-to-br from-accent-soft via-panel to-panel p-8 md:p-12 overflow-hidden">
+          <div className="absolute inset-0 opacity-40 pointer-events-none" aria-hidden>
+            <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-accent/15 blur-3xl" />
+            <div className="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-accent/10 blur-3xl" />
+          </div>
 
-        <ul className="mt-12 grid sm:grid-cols-2 gap-3 text-left">
-          {t.seed.perks.map((p) => (
-            <li
-              key={p}
-              className="flex gap-3 rounded-lg border border-border bg-panel px-5 py-4 text-ink-soft text-[14px] leading-relaxed"
-            >
-              <span className="text-accent shrink-0 mt-0.5">✓</span>
-              <span>{p}</span>
-            </li>
-          ))}
-        </ul>
+          <div className="relative grid md:grid-cols-[1.4fr_1fr] gap-10 md:gap-14 items-start">
+            {/* Left */}
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 text-[12px] font-mono tracking-eyebrow rounded-full border border-accent/40 bg-accent-soft text-accent uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                {t.seed.tag}
+              </div>
+              <h3 className="text-[28px] md:text-[36px] leading-[1.15] font-semibold tracking-tightest text-ink">
+                {t.seed.heading}
+              </h3>
+              <p className="mt-5 text-[16px] md:text-[17px] text-muted-strong leading-[1.65]">
+                {t.seed.sub}
+              </p>
+              <p className="mt-5 text-[14.5px] text-muted leading-relaxed">
+                {t.seed.exchange}
+              </p>
 
-        <p className="mt-10 text-[13px] text-muted">{t.seed.exchange}</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-accent text-white text-[14.5px] font-medium hover:bg-accent-hover transition shadow-[0_6px_24px_-8px_rgba(59,130,246,0.6)]"
+                >
+                  {t.seed.cta1} →
+                </a>
+                <a
+                  href="mailto:larrchen0125@gmail.com"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-border-strong bg-panel/60 text-ink text-[14.5px] font-medium hover:border-accent/40 transition"
+                >
+                  {t.seed.cta2}
+                </a>
+              </div>
+            </div>
 
-        <div className="mt-7 flex flex-wrap gap-3 justify-center">
-          <a
-            href="#contact"
-            className="px-5 py-2.5 rounded-md bg-accent text-white text-[14px] font-medium hover:bg-accent-hover transition shadow-[0_4px_24px_-4px_rgba(0,112,243,0.45)]"
-          >
-            {t.seed.cta1} →
-          </a>
-          <a
-            href="mailto:larrchen0125@gmail.com"
-            className="px-5 py-2.5 rounded-md border border-border bg-panel text-ink text-[14px] hover:border-border-strong transition"
-          >
-            {t.seed.cta2} · larrchen0125@gmail.com
-          </a>
+            {/* Right — Perks list */}
+            <ul className="space-y-4">
+              {t.seed.perks.map((p) => (
+                <li
+                  key={p}
+                  className="flex gap-3 text-[15px] text-ink-soft leading-[1.6]"
+                >
+                  <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-accent/15 text-accent inline-flex items-center justify-center">
+                    <svg width="11" height="11" viewBox="0 0 10 10" fill="none">
+                      <path
+                        d="M1.5 5.2L4 7.5L8.5 2.5"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <span>{p}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

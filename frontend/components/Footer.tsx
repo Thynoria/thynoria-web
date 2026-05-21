@@ -3,15 +3,16 @@ export default function Footer() {
     <footer className="border-t border-border py-12 text-sm text-muted">
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
         <div>
-          <div className="text-ink font-semibold">Thynoria</div>
-          <div className="mt-2">Reliability Infrastructure for Enterprise AI</div>
+          <div className="flex items-center gap-2.5 mb-3">
+            <img src="/logo.svg" alt="Thynoria" className="h-7 w-7" />
+            <span className="text-ink font-bold tracking-wider">THYNORIA</span>
+          </div>
+          <div>Reliability Infrastructure</div>
+          <div>for Enterprise AI</div>
         </div>
         <div>
           <div className="text-ink font-medium mb-2">联系我们</div>
-          <a
-            className="hover:text-accent"
-            href="mailto:larrchen0125@gmail.com"
-          >
+          <a className="hover:text-accent transition" href="mailto:larrchen0125@gmail.com">
             larrchen0125@gmail.com
           </a>
         </div>

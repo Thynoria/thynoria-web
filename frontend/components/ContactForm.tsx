@@ -39,16 +39,18 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="contact" className="py-28 border-t border-border">
-      <div className="max-w-xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <div className="text-[11px] font-mono tracking-eyebrow text-accent mb-4">
+    <section id="contact" className="py-24 md:py-32 border-t border-border">
+      <div className="max-w-prose mx-auto px-6">
+        <div className="text-center mb-12 md:mb-14">
+          <div className="text-[11px] font-mono tracking-eyebrow text-accent mb-5">
             {t.contact.eyebrow}
           </div>
-          <h2 className="text-3xl md:text-[40px] font-semibold tracking-tightest text-ink">
+          <h2 className="text-[28px] md:text-[36px] leading-[1.2] font-semibold tracking-tightest text-ink">
             {t.contact.heading}
           </h2>
-          <p className="mt-4 text-muted">{t.contact.sub}</p>
+          <p className="mt-5 text-[15px] md:text-[16px] text-muted leading-relaxed">
+            {t.contact.sub}
+          </p>
         </div>
 
         {status === 'ok' ? (
@@ -58,7 +60,7 @@ export default function ContactForm() {
             <div className="text-[13px] text-muted mt-3">{t.contact.okSub}</div>
           </div>
         ) : (
-          <form onSubmit={onSubmit} className="space-y-5">
+          <form onSubmit={onSubmit} className="space-y-6">
             <input
               type="text"
               name="website"
@@ -74,41 +76,43 @@ export default function ContactForm() {
                 type="email"
                 required
                 placeholder={t.contact.placeholders.email}
-                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] focus:border-accent focus:bg-elevated outline-none transition"
+                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] focus-ring transition"
               />
             </Field>
 
-            <Field label={t.contact.labels.entity} required>
-              <select
-                name="entity_location"
-                required
-                defaultValue=""
-                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] focus:border-accent outline-none transition"
-              >
-                <option value="" disabled>
-                  {t.contact.placeholders.select}
-                </option>
-                {t.contact.entityOptions.map(([v, l]) => (
-                  <option key={v} value={v}>{l}</option>
-                ))}
-              </select>
-            </Field>
+            <div className="grid sm:grid-cols-2 gap-5">
+              <Field label={t.contact.labels.entity} required>
+                <select
+                  name="entity_location"
+                  required
+                  defaultValue=""
+                  className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] focus-ring transition"
+                >
+                  <option value="" disabled>
+                    {t.contact.placeholders.select}
+                  </option>
+                  {t.contact.entityOptions.map(([v, l]) => (
+                    <option key={v} value={v}>{l}</option>
+                  ))}
+                </select>
+              </Field>
 
-            <Field label={t.contact.labels.spend} required>
-              <select
-                name="monthly_spend"
-                required
-                defaultValue=""
-                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] focus:border-accent outline-none transition"
-              >
-                <option value="" disabled>
-                  {t.contact.placeholders.select}
-                </option>
-                {t.contact.spendOptions.map(([v, l]) => (
-                  <option key={v} value={v}>{l}</option>
-                ))}
-              </select>
-            </Field>
+              <Field label={t.contact.labels.spend} required>
+                <select
+                  name="monthly_spend"
+                  required
+                  defaultValue=""
+                  className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] focus-ring transition"
+                >
+                  <option value="" disabled>
+                    {t.contact.placeholders.select}
+                  </option>
+                  {t.contact.spendOptions.map(([v, l]) => (
+                    <option key={v} value={v}>{l}</option>
+                  ))}
+                </select>
+              </Field>
+            </div>
 
             <Field label={t.contact.labels.scenario}>
               <textarea
@@ -116,14 +120,14 @@ export default function ContactForm() {
                 rows={4}
                 maxLength={1000}
                 placeholder={t.contact.placeholders.scenario}
-                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] focus:border-accent focus:bg-elevated outline-none transition resize-none"
+                className="w-full bg-panel border border-border rounded-md px-4 py-3 text-ink text-[14px] leading-relaxed focus-ring transition resize-none"
               />
             </Field>
 
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="w-full px-5 py-3 rounded-md bg-accent text-white text-[14px] font-medium hover:bg-accent-hover disabled:opacity-50 transition shadow-[0_4px_24px_-4px_rgba(0,112,243,0.4)]"
+              className="w-full px-5 py-3 rounded-md bg-accent text-white text-[14px] font-medium hover:bg-accent-hover disabled:opacity-50 transition shadow-[0_4px_24px_-4px_rgba(0,112,243,0.45)]"
             >
               {status === 'loading' ? t.contact.submitting : `${t.contact.submit} →`}
             </button>
@@ -134,7 +138,7 @@ export default function ContactForm() {
               </div>
             )}
 
-            <p className="text-[12px] text-muted text-center">{t.contact.privacy}</p>
+            <p className="text-[12px] text-muted text-center pt-2">{t.contact.privacy}</p>
           </form>
         )}
       </div>
@@ -153,7 +157,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="block text-[12px] font-mono tracking-wider text-muted mb-2 uppercase">
+      <span className="block text-[11px] font-mono tracking-eyebrow text-muted mb-2.5 uppercase">
         {label} {required && <span className="text-accent">*</span>}
       </span>
       {children}

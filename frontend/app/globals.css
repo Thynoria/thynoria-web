@@ -2,41 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  /* Sticky nav 高度补偿，让锚点跳转不被遮挡 */
+  scroll-padding-top: 80px;
+}
+
 html, body {
   background: #0A0A0B;
   color: #F4F4F5;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* 中文优先字体栈 + 让数字使用比例字宽 */
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+  text-rendering: optimizeLegibility;
 }
 
-/* 精密网格背景 */
+/* 选区色 */
+::selection {
+  background: rgba(0, 112, 243, 0.35);
+  color: #F4F4F5;
+}
+
+/* 中文段落更舒展的行高 */
+:lang(zh-CN) p,
+:lang(zh-CN) li {
+  line-height: 1.75;
+}
+
+/* 表格里数字等宽对齐 */
+table {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 精细网格 */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 56px 56px;
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
-/* 顶部柔和辉光 — 只在首屏 */
+/* 顶部柔光 */
 .hero-glow {
   background:
-    radial-gradient(circle at 50% 0%, rgba(0,112,243,0.18) 0%, transparent 55%),
-    radial-gradient(circle at 20% 30%, rgba(0,112,243,0.06) 0%, transparent 40%);
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0, 112, 243, 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 30% 20%, rgba(0, 112, 243, 0.04) 0%, transparent 50%);
 }
 
-/* 顶部到内容的渐变蒙版（让网格自然消失）*/
 .fade-bottom {
-  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
 
-/* 卡片描边发光 */
+/* 卡片悬停 */
+.card-glow {
+  transition: border-color 200ms ease, background-color 200ms ease,
+    box-shadow 200ms ease, transform 200ms ease;
+}
 .card-glow:hover {
-  border-color: rgba(0,112,243,0.4);
-  box-shadow: 0 0 0 1px rgba(0,112,243,0.15), 0 8px 32px -8px rgba(0,112,243,0.2);
+  border-color: rgba(0, 112, 243, 0.3);
+  background-color: #131417;
+  box-shadow: 0 1px 0 0 rgba(0, 112, 243, 0.08), 0 12px 40px -16px rgba(0, 112, 243, 0.25);
 }
 
-/* 表格行分隔 */
-.dim-row {
-  border-color: #1F2125;
+/* 表单聚焦细环 */
+.focus-ring:focus {
+  outline: none;
+  border-color: rgba(0, 112, 243, 0.6);
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.15);
 }
 
 /* 滚动条 */

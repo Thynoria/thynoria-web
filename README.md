@@ -64,7 +64,31 @@ npm run dev
 
 ---
 
-## 三、生产部署（VPS）
+## 三、生产部署（VPS · 推荐用 CI 构建好的镜像）
+
+代码 push 到 main 后，GitHub Actions 会自动构建并推送镜像至：
+
+- `ghcr.io/thynoria/thynoria-web-frontend:latest`
+- `ghcr.io/thynoria/thynoria-web-backend:latest`
+
+VPS 端只需拉镜像启动，**无需本地构建**：
+
+```bash
+cp .env.example .env  # 填 Supabase 凭据
+docker compose -f docker-compose.prod.yml pull
+docker compose -f docker-compose.prod.yml up -d
+```
+
+如需回滚到指定版本：`IMAGE_TAG=sha-1b52895 docker compose -f docker-compose.prod.yml up -d`
+
+> 如果 ghcr 包是 private，先：
+> ```
+> echo $GHCR_PAT | docker login ghcr.io -u <github-username> --password-stdin
+> ```
+
+---
+
+## 四、本地完整构建部署（备选）
 
 ### 1. 准备一台 Linux VPS
 

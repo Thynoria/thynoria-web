@@ -1,0 +1,50 @@
+# 生产部署：直接拉取 ghcr.io 上由 CI 构建好的镜像
+# 用法：docker compose -f docker-compose.prod.yml pull && docker compose -f docker-compose.prod.yml up -d
+#
+# 如果镜像是 private，先登录：
+#   echo $GHCR_PAT | docker login ghcr.io -u <github-username> --password-stdin
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - web
+
+  frontend:
+    image: ghcr.io/thynoria/thynoria-web-frontend:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    expose:
+      - "80"
+    networks:
+      - web
+
+  backend:
+    image: ghcr.io/thynoria/thynoria-web-backend:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    expose:
+      - "3000"
+    environment:
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY}
+      ALLOWED_ORIGIN: ${ALLOWED_ORIGIN:-https://thynoria.com}
+      PORT: "3000"
+    networks:
+      - web
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  web:

@@ -9,23 +9,21 @@ export default function Hero() {
       <div className="absolute inset-0 bg-grid fade-bottom pointer-events-none" />
 
       <div className="relative max-w-content mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-28">
-        {/* Eyebrow */}
+        {/* Eyebrow — small category badge */}
         <div className="flex justify-center mb-8">
-          <div className="text-[11px] font-mono tracking-eyebrow text-accent inline-flex items-center gap-2.5">
+          <div className="text-[11px] font-mono tracking-eyebrow text-accent inline-flex items-center gap-2.5 px-3 py-1 rounded-full border border-accent/30 bg-accent-soft">
             <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,112,243,0.9)]" />
             {t.hero.eyebrow}
           </div>
         </div>
 
-        {/* H1 */}
-        <h1 className="text-center text-[40px] sm:text-[52px] md:text-[64px] leading-[1.05] font-semibold tracking-tightest text-ink max-w-3xl mx-auto">
-          {t.hero.h1Line1}
-          <br />
-          <span className="text-muted-strong">{t.hero.h1Line2}</span>
+        {/* H1 — brand slogan */}
+        <h1 className="text-center text-[36px] sm:text-[48px] md:text-[60px] leading-[1.1] font-semibold tracking-tightest text-ink max-w-3xl mx-auto">
+          {t.hero.h1}
         </h1>
 
-        {/* Sub */}
-        <p className="mt-7 md:mt-8 text-center text-[16px] md:text-[18px] text-muted leading-relaxed max-w-xl mx-auto">
+        {/* Sub — brand positioning paragraph */}
+        <p className="mt-7 md:mt-8 text-center text-[16px] md:text-[17px] text-muted leading-relaxed max-w-2xl mx-auto">
           {t.hero.sub}
         </p>
 
